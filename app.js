@@ -1,5 +1,5 @@
 function changeContent () {
-	console.log("loaded!")
+	
 	function Contact( firstName, lastName, email, phone, address, city) {
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -9,13 +9,16 @@ function changeContent () {
 		this.city = city;
 	}
 
+	//<--* Array for newly added contacts *-->
+
 	var contactArray = []
 	var counter = 0
 
+	//<--* Function that adds new contacts *-->
 
 	document.getElementById("addButton").onclick = function (event) {
 		event.preventDefault()
-		// to obtain the input value entered by user
+		//<--* to obtain the input value entered by user *-->
 
 		var formName = document.getElementById("form_name").value;
 		console.log(formName)
@@ -26,15 +29,13 @@ function changeContent () {
 		var formCity = document.getElementById("form_city").value;
 		
 		if(formName != "" && formLast != "" && formEmail !=""){
-			// variable to create a new contact object
+			//<--* variable to create a new contact object *-->
 
 			var newContact = new Contact(formName, formLast, formEmail, formPhone, formAddress, formCity);
-			console.log("yiss", newContact)
+			// console.log("yiss", newContact)
 			
-			// document.getElementById("contactInfo").innerHTML = newContact.firstName + " " + newContact.lastName;
-
 			contactArray.push(newContact)
-			console.log(contactArray)
+			// console.log(contactArray)
 
 			$("#contactContainer").append("<li>" + "<a id='"+ counter +"'>" + newContact.firstName + " " + newContact.lastName + "</a>" + "</li>")
 			counter++
@@ -52,6 +53,8 @@ function changeContent () {
 
 	}
 
+	//<--* Function to see contact details upon clicking their name link *-->
+
 	$("#contactContainer").on("click", "a",function(event){
 		event.preventDefault
 		console.log("ID OF ELEMENT CLICKED:" ,event.target.id)
@@ -62,15 +65,6 @@ function changeContent () {
 		document.getElementById("cityInfo").innerHTML = contactArray[event.target.id].city
 
 	});
-
-	
-	// $("#addButton").keyup(function (){
-	// 	console.log("nooo")
-	// 	// document.getElementById("#contactInformation").value = ""
-	// 	$("#contact-form").empty();
-
-	// });
-
 
 
 }
